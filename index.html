@@ -1,440 +1,697 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GOJE</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goje Emmanuel - Portfolio</title>
     <style>
-      /* CSS Variables for Theme Colors */
-      :root {
-        --bg-color: #fff;
-        --primary-color: #1abc9c;
-        --secondary-color: #16a085;
-        --text-color: #333;
-        --nav-bg: rgba(0, 0, 0, 0.8);
-        --accent-color: #f39c12;
-      }
-      body.dark {
-        --bg-color: #222;
-        --primary-color: #16a085;
-        --secondary-color: #1abc9c;
-        --text-color: #ddd;
-        --nav-bg: rgba(0, 0, 0, 0.9);
-        --accent-color: #e67e22;
-      }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-      /* Global Resets & Base Styles */
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      body,
-      html {
-        font-family: 'Roboto', sans-serif;
-        color: var(--text-color);
-        background: var(--bg-color);
-        scroll-behavior: smooth;
-        overflow-x: hidden;
-      }
-      /* Enhanced Readability for Text */
-      h1,
-      h2,
-      h3 {
-        margin-bottom: 1rem;
-      }
-      p {
-        font-size: 1.1rem;
-        line-height: 1.6;
-        margin-bottom: 1.5rem;
-      }
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            overflow-x: hidden;
+        }
 
-      /* Scroll Progress Bar */
-      #progress-container {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 5px;
-        background: rgba(0, 0, 0, 0.1);
-        z-index: 999;
-      }
-      #progress-bar {
-        height: 100%;
-        width: 0;
-        background: var(--accent-color);
-      }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-      /* Navigation Bar */
-      nav {
-        position: fixed;
-        top: 5px;
-        width: 100%;
-        background: var(--nav-bg);
-        padding: 1rem 2rem;
-        z-index: 1000;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        transition: background 0.3s ease;
-      }
-      nav ul {
-        list-style: none;
-        display: flex;
-      }
-      nav ul li {
-        margin: 0 1rem;
-      }
-      nav ul li a {
-        color: #fff;
-        text-decoration: none;
-        font-size: 1.1rem;
-        transition: color 0.3s ease;
-      }
-      nav ul li a:hover {
-        color: var(--accent-color);
-      }
-      #theme-toggle {
-        background: var(--accent-color);
-        color: #fff;
-        border: none;
-        padding: 0.5rem 1rem;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background 0.3s ease;
-      }
-      #theme-toggle:hover {
-        background: var(--secondary-color);
-      }
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
 
-      /* Header Section with Parallax & Animated Gradient */
-      header {
-        height: 100vh;
-        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-        background-size: 200% 200%;
-        animation: gradientShift 10s ease infinite;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #fff;
-        overflow: hidden;
-        position: relative;
-      }
-      .parallax-container {
-        text-align: center;
-        animation: fadeIn 1.5s ease-in-out;
-      }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
 
-      /* Elegant Fade-In Up Effect for Hero Title */
-      #hero-title {
-        font-size: 3.5rem;
-        margin-bottom: 1rem;
-        letter-spacing: 1px;
-        opacity: 0;
-        animation: fadeInUp 2s ease forwards;
-        color: #ffffff;
-      }
-      @keyframes fadeInUp {
-        from {
-          opacity: 0;
-          transform: translateY(30px);
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #64ffda;
         }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
-      }
-      @keyframes gradientShift {
-        0% {
-          background-position: 0% 50%;
-        }
-        50% {
-          background-position: 100% 50%;
-        }
-        100% {
-          background-position: 0% 50%;
-        }
-      }
 
-      /* Pulsating Blob Effect in Header */
-      header::after {
-        content: "";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 300px;
-        height: 300px;
-        background: var(--accent-color);
-        border-radius: 50%;
-        opacity: 0.2;
-        filter: blur(100px);
-        transform: translate(-50%, -50%);
-        z-index: -2;
-        animation: blobAnimation 8s infinite ease-in-out;
-      }
-      @keyframes blobAnimation {
-        0% {
-          transform: translate(-50%, -50%) scale(1);
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
         }
-        33% {
-          transform: translate(-50%, -45%) scale(1.3);
-        }
-        66% {
-          transform: translate(-50%, -55%) scale(0.8);
-        }
-        100% {
-          transform: translate(-50%, -50%) scale(1);
-        }
-      }
 
-      /* Section Styling */
-      section {
-        padding: 4rem 2rem;
-        text-align: center;
-        opacity: 0;
-        transform: translateY(50px);
-        transition: opacity 0.8s ease, transform 0.8s ease;
-      }
-      section.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      /* Projects Grid */
-      .project-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 2rem;
-        margin-top: 2rem;
-      }
-      .project {
-        background: #f0f0f0;
-        padding: 1.5rem;
-        border-radius: 10px;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        cursor: pointer;
-      }
-      body.dark .project {
-        background: #333;
-      }
-      .project:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-      }
-
-      /* Contact Section with Google Form Embed */
-      section#contact {
-        padding: 4rem 1rem;
-      }
-      section#contact h2 {
-        margin-bottom: 2rem;
-      }
-      section#contact iframe {
-        border: none;
-        width: 100%;
-        height: 600px;
-        max-width: 600px;
-      }
-
-      /* Modal Styles (Unchanged) */
-      .modal {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.7);
-        display: none;
-        align-items: center;
-        justify-content: center;
-        z-index: 1100;
-      }
-      .modal-content {
-        background: var(--bg-color);
-        padding: 2rem;
-        border-radius: 10px;
-        width: 90%;
-        max-width: 500px;
-        position: relative;
-        animation: slideDown 0.5s ease;
-      }
-      @keyframes slideDown {
-        from {
-          transform: translateY(-50px);
-          opacity: 0;
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            position: relative;
         }
-        to {
-          transform: translateY(0);
-          opacity: 1;
-        }
-      }
-      .modal-close {
-        position: absolute;
-        top: 10px;
-        right: 15px;
-        font-size: 1.5rem;
-        color: var(--accent-color);
-        cursor: pointer;
-      }
 
-      /* Back-to-Top Button */
-      #back-to-top {
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        background: var(--accent-color);
-        color: #fff;
-        border: none;
-        padding: 0.75rem 1rem;
-        border-radius: 50%;
-        font-size: 1.5rem;
-        cursor: pointer;
-        display: none;
-        z-index: 1000;
-      }
-      #back-to-top:hover {
-        background: var(--secondary-color);
-      }
+        .nav-links a:hover {
+            color: #64ffda;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #64ffda;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: slideInFromTop 1s ease-out;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: #64ffda;
+            animation: slideInFromBottom 1s ease-out 0.5s both;
+        }
+
+        .hero .description {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            animation: fadeIn 1s ease-out 1s both;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #64ffda, #4fc3f7);
+            color: #000;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(100, 255, 218, 0.3);
+        }
+
+        /* Floating particles */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #64ffda;
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Sections */
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            color: #64ffda;
+        }
+
+        /* About Section */
+        .about {
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .skill-tag {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            transform: scale(0);
+            animation: popIn 0.5s ease-out forwards;
+        }
+
+        /* Projects Section */
+        .projects {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(100, 255, 218, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(100, 255, 218, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .project-card:hover::before {
+            left: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(100, 255, 218, 0.2);
+        }
+
+        .project-card h3 {
+            color: #64ffda;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-card p {
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-tag {
+            background: rgba(100, 255, 218, 0.2);
+            color: #64ffda;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .contact-content {
+            text-align: center;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-item {
+            background: rgba(100, 255, 218, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(100, 255, 218, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(100, 255, 218, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .contact-item h3 {
+            color: #64ffda;
+            margin-bottom: 1rem;
+        }
+
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .contact-item a:hover {
+            color: #64ffda;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.9);
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid rgba(100, 255, 218, 0.3);
+        }
+
+        /* Animations */
+        @keyframes slideInFromTop {
+            from {
+                opacity: 0;
+                transform: translateY(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInFromBottom {
+            from {
+                opacity: 0;
+                transform: translateY(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+                opacity: 0.8;
+            }
+        }
+
+        @keyframes popIn {
+            to {
+                transform: scale(1);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
-  </head>
-  <body>
-    <!-- Scroll Progress Bar -->
-    <div id="progress-container">
-      <div id="progress-bar"></div>
-    </div>
-
-    <!-- Navigation Bar -->
-    <nav id="navbar">
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <button id="theme-toggle">Toggle Theme</button>
-    </nav>
-
-    <!-- Header Section -->
-    <header id="home">
-      <div class="parallax-container">
-        <h1 id="hero-title">Unleashing Limitless Possibilities</h1>
-        <p>
-          Hi there! I'm Emmanuel—a passionate web developer who thrives on creativity and innovative code.
-          This isn't just a portfolio it's a collection of experience experiment ideas late night bold moves and things i wasnt sure would work-but did
-          not just looking at what i did  you're seeing how i think 
-  
-        </p>
-      </div>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Goje Emmanuel</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <!-- About Section -->
-    <section id="about">
-      <h2>About Me</h2>
-      <p>
-        Hello, I'm Emmanuel, a creative developer based in Adamawa State, Nigeria.
-        My journey into coding began at a not so early age, and I've since transformed my passion for technology
-        into building seamless, engaging web experiences.
-      </p>
-      <p>
-        With a strong foundation in HTML, CSS, and JavaScript, I push the boundaries of web design by merging
-        aesthetics with functionality. Every project is an opportunity to learn, innovate, and create digital experiences
-        that resonate.
-      </p>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects">
-      <h2>My Projects</h2>
-      <p>
-        Each project below showcases a unique blend of design and technical skill.
-        From smooth animations to fully responsive layouts, click on any project for in-depth details.
-      </p>
-      <div class="project-grid">
-        <div class="project" data-title="Project 1" data-description="Project 1 combines smooth animations with innovative design for an immersive web experience.">
-          <h3>Project 1</h3>
-          <p>Click to learn more.</p>
+    <section id="home" class="hero">
+        <div class="particles" id="particles"></div>
+        <div class="hero-content">
+            <h1>Goje Emmanuel</h1>
+            <p class="subtitle">Unleashing Limiteless Possibilities </p>
+            <p class="description">
+                Passionate about creating innovative solutions that bridge the gap between engineering and technology. 
+                Currently studying at M.A.U Yola while building amazing applications that make a difference.
+            </p>
+            <button class="cta-button" onclick="scrollToSection('projects')">View My Work</button>
         </div>
-        <div class="project" data-title="Project 2" data-description="In Project 2, interactive elements and fluid animations create a dynamic and engaging interface.">
-          <h3>Project 2</h3>
-          <p>Click to learn more.</p>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title fade-in-up">About Me</h2>
+            <div class="about-content">
+                <div class="about-text fade-in-up">
+                    <p>
+                        I'm a Chemical Engineering student at Modibbo Adama University, Yola, with a passion for 
+                        programming and innovation. As a self-taught developer, I've mastered multiple programming 
+                        languages and frameworks to create solutions that address real-world problems.
+                    </p>
+                    <p>
+                        My journey in programming started with curiosity and has evolved into creating impactful 
+                        applications that serve my community. I believe in the power of technology to transform 
+                        lives and I'm committed to being part of that transformation.
+                    </p>
+                    <div class="skills">
+                        <span class="skill-tag" style="animation-delay: 0.1s">JavaScript</span>
+                        <span class="skill-tag" style="animation-delay: 0.2s">Python</span>
+                        <span class="skill-tag" style="animation-delay: 0.3s">React</span>
+                        <span class="skill-tag" style="animation-delay: 0.4s">Node.js</span>
+                        <span class="skill-tag" style="animation-delay: 0.5s">AI/ML</span>
+                        <span class="skill-tag" style="animation-delay: 0.6s">Flask</span>
+                        <span class="skill-tag" style="animation-delay: 0.7s">HTML/CSS</span>
+                        <span class="skill-tag" style="animation-delay: 0.8s">Chemical Engineering</span>
+                    </div>
+                </div>
+                <div class="about-image fade-in-up">
+                    <div style="width: 300px; height: 300px; background: linear-gradient(45deg, #64ffda, #4fc3f7); border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center; font-size: 4rem; color: #000; font-weight: bold;">
+                        GE
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </section>
 
-    <!-- Contact Section with Google Form Embed -->
-    <section id="contact">
-      <h2>Contact Me</h2>
-      <p>
-        Got a project idea or just want to say hello? Fill out the form below.
-        Your message will be sent directly via Google Forms.
-      </p>
-      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScoSLHyVRy6eA6SpRuLe9L-lyoGigCs-7d87ZRhyu9MFsiaOg/viewform?embedded=true"></iframe>
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title fade-in-up">My Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card fade-in-up">
+                    <h3>Nooroo - Personal AI Assistant</h3>
+                    <p>
+                        My personal AI assistant that helps me manage my daily tasks, set reminders, and stay organized. 
+                        Nooroo uses natural language processing to understand and respond to my needs, making my life 
+                        more productive and efficient.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Natural Language Processing</span>
+                        <span class="tech-tag">AI/ML</span>
+                        <span class="tech-tag">Speech Recognition</span>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in-up">
+                    <h3>Flight Finder Nigeria</h3>
+                    <p>
+                        A comprehensive flight search and booking platform specifically designed for Nigerian travelers. 
+                        The application helps users find the best flight deals, compare prices, and book flights from 
+                        various airlines operating in Nigeria.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">API Integration</span>
+                        <span class="tech-tag">Payment Gateway</span>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in-up">
+                    <h3>Adamawa Ride Service</h3>
+                    <p>
+                        A customized ride-sharing service tailored for Adamawa State, Nigeria. This Uber-like platform 
+                        connects drivers and passengers in the region, providing affordable and reliable transportation 
+                        solutions for the local community.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Flask</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Google Maps API</span>
+                        <span class="tech-tag">Real-time Tracking</span>
+                        <span class="tech-tag">Mobile Responsive</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <!-- Modal for Project Details -->
-    <div id="modal" class="modal">
-      <div class="modal-content">
-        <span id="modal-close" class="modal-close">&times;</span>
-        <h3 id="modal-title"></h3>
-        <p id="modal-description"></p>
-      </div>
-    </div>
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title fade-in-up">Get In Touch</h2>
+            <div class="contact-content fade-in-up">
+                <p style="font-size: 1.2rem; margin-bottom: 2rem;">
+                    I'm always open to discussing new opportunities, collaborations, or just having a chat about technology and innovation.
+                </p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <h3>📧 Email</h3>
+                        <a href="mailto:emmanuelgoje389@gmail.com">emmanuelgoje389@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <h3>📱 WhatsApp</h3>
+                        <a href="https://wa.me/2349061489169" target="_blank">+234 906 148 9169</a>
+                    </div>
+                    <div class="contact-item">
+                        <h3>📞 Phone</h3>
+                        <a href="tel:+2349061489169">+234 906 148 9169</a>
+                    </div>
+                    <div class="contact-item">
+                        <h3>🎓 Institution</h3>
+                        <p>Modibbo Adama University, Yola<br>Chemical Engineering Department</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <!-- Back-to-Top Button -->
-    <button id="back-to-top">↑</button>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Goje Emmanuel. All rights reserved. Built with passion and dedication.</p>
+        </div>
+    </footer>
 
     <script>
-      // Theme Toggle
-      document.getElementById("theme-toggle").addEventListener("click", () => {
-        document.body.classList.toggle("dark");
-      });
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
 
-      // Scroll Progress Bar & Back-to-Top Button
-      window.addEventListener("scroll", () => {
-        const progressBar = document.getElementById("progress-bar");
-        const scrollTotal = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        progressBar.style.width = ((window.scrollY / scrollTotal) * 100) + "%";
-        document.getElementById("back-to-top").style.display = window.scrollY > 300 ? "block" : "none";
-      });
-      document.getElementById("back-to-top").addEventListener("click", () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      });
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
 
-      // Reveal Sections on Scroll
-      const sections = document.querySelectorAll("section");
-      const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            observer.unobserve(entry.target);
-          }
+        // Smooth scrolling
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Add smooth scrolling to nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
         });
-      }, { threshold: 0.2 });
-      sections.forEach(section => observer.observe(section));
 
-      // Interactive Project Modals
-      const projects = document.querySelectorAll(".project");
-      const modal = document.getElementById("modal");
-      const modalTitle = document.getElementById("modal-title");
-      const modalDescription = document.getElementById("modal-description");
-      const modalClose = document.getElementById("modal-close");
-      projects.forEach(project => {
-        project.addEventListener("click", function () {
-          modalTitle.textContent = this.dataset.title;
-          modalDescription.textContent = this.dataset.description;
-          modal.style.display = "flex";
+        // Scroll animations
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.fade-in-up');
+            const windowHeight = window.innerHeight;
+            const elementVisible = 150;
+
+            reveals.forEach(reveal => {
+                const elementTop = reveal.getBoundingClientRect().top;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveal.classList.add('visible');
+                }
+            });
+        }
+
+        // Header background on scroll
+        function updateHeader() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(0, 0, 0, 0.95)';
+            } else {
+                header.style.background = 'rgba(0, 0, 0, 0.9)';
+            }
+        }
+
+        // Event listeners
+        window.addEventListener('scroll', () => {
+            revealOnScroll();
+            updateHeader();
         });
-      });
-      modalClose.addEventListener("click", () => { modal.style.display = "none"; });
-      window.addEventListener("click", (e) => { if (e.target === modal) modal.style.display = "none"; });
+
+        window.addEventListener('load', () => {
+            createParticles();
+            revealOnScroll();
+        });
+
+        // Typing effect for hero subtitle
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.innerHTML = '';
+            
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            
+            setTimeout(type, 1000);
+        }
+
+        // Initialize typing effect
+        window.addEventListener('load', () => {
+            const subtitle = document.querySelector('.hero .subtitle');
+            const originalText = subtitle.textContent;
+            typeWriter(subtitle, originalText, 80);
+        });
+
+        // Add hover effect to project cards
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Add click animations to buttons
+        document.querySelectorAll('button, .contact-item').forEach(element => {
+            element.addEventListener('click', function() {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        });
+
+        // Dynamic gradient background
+        function updateGradient() {
+            const scrollPercent = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+            const hue1 = 220 + (scrollPercent * 60);
+            const hue2 = 280 + (scrollPercent * 40);
+            
+            document.body.style.background = `linear-gradient(135deg, hsl(${hue1}, 70%, 60%) 0%, hsl(${hue2}, 60%, 50%) 100%)`;
+        }
+
+        window.addEventListener('scroll', updateGradient);
     </script>
-  </body>
+</body>
 </html>
